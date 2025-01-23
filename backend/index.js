@@ -42,7 +42,7 @@ const transporter = nodemailer.createTransport({
 });
 
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  res.json({ message: "API is working" });
 });
 
 app.get("/api/status", (req, res) => {

@@ -17,11 +17,18 @@ const LighthouseAudit = () => {
  // Fetch data from the backend to check if API is working
  useEffect(() => {
   fetch(process.env.REACT_APP_API_URL)
-    .then((res) => res.json())
-    .then((data) => setMessage(data.message))
-    .catch((err) => console.error(err));
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      return res.json(); // Parse response as JSON
+    })
+    .then((data) => {
+      console.log("Response:", data); // Logs { message: "API is working" }
+      setMessage(data.message); // Set message to "API is working"
+    })
+    .catch((err) => console.error("Error:", err));
 }, []);
-
 
   // Convert bytes to MB
   const convertBytesToMB = (bytes) => (bytes / (1024 * 1024)).toFixed(2);
