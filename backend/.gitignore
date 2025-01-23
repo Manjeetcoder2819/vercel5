@@ -1,0 +1,35 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs/
+*.log
+logs/*.log
+debug.log
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build Output
+/build/
+dist/
+
+# Testing
+coverage/
+
+# OS/Editor Generated Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.sublime-workspace
+
+# Temporary Files
+temp/
+*.tmp
