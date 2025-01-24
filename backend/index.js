@@ -17,25 +17,23 @@ app.use(cors({
 
 app.use(express.json());
 
-
-// MongoDB Connection
+// MongoDB connection URI from environment variables
 const MONGO_URI = process.env.MONGO_URI;
+
+// Check if MONGO_URI is defined
 if (!MONGO_URI) {
-  console.error("MONGO_URI is not defined in environment variables.");
-  process.exit(1);
+  console.error("Error: MONGO_URI is not defined in the environment variables.");
+  process.exit(1); // Exit the process if no MONGO_URI is defined
 }
+
+// Connect to MongoDB using Mongoose
 mongoose
-  .connect(MONGO_URI, {
-    useNewUrlParser: true,        // Use new URL parser
-    useUnifiedTopology: true,     // Use the new server discovery and monitoring engine
-    serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds if no server is found
-  })
+  .connect(MONGO_URI) // No deprecated options
   .then(() => {
     console.log("MongoDB connection successful");
   })
   .catch((err) => {
     console.error("MongoDB connection error:", err.message); // Log detailed error message
-    console.error("Check your MongoDB URI and ensure the database is accessible.");
     process.exit(1); // Exit the process on connection failure
   });
 const transporter = nodemailer.createTransport({
