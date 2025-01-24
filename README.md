@@ -20,8 +20,7 @@ The backend is built using **Node.js** and **MongoDB**. It provides API endpoint
 - Send email with the analysis report.
 
 ### Setup for Backend
-1. Clone the repo.
-2. Install dependencies:
+1. Install dependencies:
    ```bash
    npm install
 
