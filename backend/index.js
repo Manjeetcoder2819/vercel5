@@ -24,15 +24,20 @@ if (!MONGO_URI) {
   console.error("MONGO_URI is not defined in environment variables.");
   process.exit(1);
 }
-
 mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB connection successful"))
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,        // Use new URL parser
+    useUnifiedTopology: true,     // Use the new server discovery and monitoring engine
+    serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds if no server is found
+  })
+  .then(() => {
+    console.log("MongoDB connection successful");
+  })
   .catch((err) => {
-    console.error("MongoDB connection error:", err);
-    process.exit(1);
+    console.error("MongoDB connection error:", err.message); // Log detailed error message
+    console.error("Check your MongoDB URI and ensure the database is accessible.");
+    process.exit(1); // Exit the process on connection failure
   });
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
