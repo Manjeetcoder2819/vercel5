@@ -18,7 +18,7 @@ app.use(cors({
 app.use(express.json());
 
 // MongoDB connection URI from environment variables
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = 'mongodb+srv://manjeetgupta091:fApc8wjtJVImN19A@cluster34.cgd0c.mongodb.net/client?retryWrites=true&w=majority&appName=Cluster34' ;
 
 // Check if MONGO_URI is defined
 if (!MONGO_URI) {
